@@ -55,7 +55,7 @@ let Playlist = React.createClass({
 		   	let track = this.state.tracks[0];
 		   	let currentPlaying = this.props.player.player.getVideoData();
 			if (!currentPlaying || !currentPlaying.video_id && this.state.tracks.length){
-				this.selectTrack(track.id.videoId);
+				this.selectTrack(track);
 			}
 		  }
 		})
