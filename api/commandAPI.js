@@ -9,10 +9,16 @@ yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
 
 function parseYoutubeResults(results) {
     let items = results.items;
+    return {
 
-    return items.map(item => {
-        return 'http://www.youtube.com/watch?v=' + item.id.videoId;
-    }).join('\n');
+        attachments:items.map(item => {
+            return {
+                title: '*' + item.snippet.title + '*',
+                text:'http://www.youtube.com/watch?v=' + item.id.videoId,
+                mrkdwn_in: ['text' , 'title']
+            }
+        })
+    };
 }
 
 module.exports = {
