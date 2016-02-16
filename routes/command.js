@@ -1,14 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var parser = require('../parsers/commandParser')
+var api = require('../api/commandAPI')
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
   //res.send(req.body.text);
-  parser.parse(req.body.text, (err, result) => {
-    if(!err){
+  api.handleCommand(req.body.text).then( result => {
+
       res.send(JSON.stringify(result));
-    }
+
+  },
+  err => {
+    res.status(404);
+    res.statusMessage(err);
+    res.end();
   })
 });
 
