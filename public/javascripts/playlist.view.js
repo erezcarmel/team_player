@@ -21,13 +21,13 @@ let Playlist = React.createClass({
 	componentDidMount() {
 		this.props.player.onTrackEnded(() => {
 			const selectedId = this.state.selected;
-			const currentIndex = this.props.tracks.findIndex((el, index) => {
+			const currentIndex = this.state.tracks.findIndex((el, index) => {
 				return el.id.videoId === selectedId;
 			});
 			const nextIndex = currentIndex + 1;
-			const nextId = nextIndex === this.props.tracks.length ?
-				this.props.tracks[0].id.videoId :
-				this.props.tracks[nextIndex].id.videoId;
+			const nextId = nextIndex === this.state.tracks.length ?
+				this.state.tracks[0].id.videoId :
+				this.state.tracks[nextIndex].id.videoId;
 			this.setState({ selected: nextId });
 			this.playVideo(nextId)
 		});
@@ -55,7 +55,7 @@ let Playlist = React.createClass({
 		   	let track = this.state.tracks[0];
 		   	let currentPlaying = this.props.player.player.getVideoData();
 			if (!currentPlaying || !currentPlaying.video_id && this.state.tracks.length){
-				this.selectedTrack(track.id.videoId);
+				this.selectTrack(track.id.videoId);
 			}
 		  }
 		})
