@@ -45,7 +45,7 @@ module.exports = {
                             if(items && items.length){
                                 // playlist.push(items[0]);
 																videoList.add(items[0]).then(result =>
-                                	return resolve({text: items[0].snippet.title + ' added to playlist'})
+                                	resolve({text: items[0].snippet.title + ' added to playlist'})
 																)
                             }
                             return resolve({text: 'No video found.'});
@@ -67,7 +67,9 @@ module.exports = {
                     break;
                 case 'list':
                 default: //list
-                    resolve({ text: '*The playlist*:', attachments:videoList.getAll().then(results => result.map(parseResultItem)}));
+										attachments:videoList.getAll()
+										.then(results =>
+                    	resolve({ text: '*The playlist*:', attachments: results.map(parseResultItem)}));
                     break;
             }
         });
