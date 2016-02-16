@@ -1,6 +1,7 @@
 /**
  * Created by robertferentz on 2016-02-16.
  */
+'use strict'
 let youtube = require('youtube-node');
 let yt = new youtube();
 

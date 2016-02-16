@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var parser = require('./parsers/commandParser')
+var parser = require('../parsers/commandParser')
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
