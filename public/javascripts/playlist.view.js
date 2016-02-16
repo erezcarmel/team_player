@@ -51,7 +51,6 @@ let Playlist = React.createClass({
 		    this.setState({
 		    	tracks: tracks
 		   	})
-		   	let isPlaying = this.props.player.player.getCurrentTime();
 		   	let track = this.state.tracks[0];
 		   	let currentPlaying = this.props.player.player.getVideoData();
 			if (!currentPlaying || !currentPlaying.video_id && this.state.tracks.length){
