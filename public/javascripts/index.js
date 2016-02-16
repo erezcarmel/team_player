@@ -2,19 +2,24 @@
 var React = require('react')
 var ReactDOM = require('react-dom');
 
-class A {
+var Playlist = require('./playlist.view');
 
+var Player = require('./player');
+require('./socket.io.client')
+
+var playlist = require('./youtube-medias.js');
+var onPlay = (track) => {
+	Player.TeamPlayer.player.loadVideoById(track.id.videoId);
+    Player.TeamPlayer.player.playVideo();
 }
-
-let a = new A()
+let selectedTrackId = 'NtjrxhaDVo8';
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.querySelector('#console')
+	<Playlist
+		tracks={ playlist }
+		onPlay={ onPlay }
+		selected={ selectedTrackId }
+		player={ Player.TeamPlayer }
+	/>,
+	document.querySelector('#playlist')
 );
-
-console.log('working with react version:')
-// console.log(react.version)
-
-require('./player');
-require('./socket.io.client')

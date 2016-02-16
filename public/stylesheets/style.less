@@ -1,7 +1,8 @@
 @bgcolor: rgba(255,255,255, .7);
+@active: rgba(240, 181, 79, .7);
 
 body {
-  padding: 50px;
+  padding: 0rem 3rem;
   font: 14px "Raleway", Helvetica, Arial, sans-serif;
   background: url(http://thenextweb.com/wp-content/blogs.dir/1/files/2015/03/1-ryU77MsLt5tnp3ow8kqELA.png) repeat;
 }
@@ -26,10 +27,53 @@ h1 {
 	margin-right: 3rem;
 	background: @bgcolor;
 	width: 29.5rem;
-    min-height: 25rem;
+	min-height: 25rem;
+	max-height: 30rem;
     border-radius: 0.5rem;
+    overflow: hidden;
+
+    .playlist-container {
+	    overflow-y: auto;
+	    min-height: 25rem;
+	    max-height: 30rem;
+    }
+
+    h2 {
+    	padding: .5rem 2rem;
+    }
 }
 
 .player iframe {
 	border-radius: .5rem;
+}
+
+.clearfix {
+	overflow: auto;
+}
+.track {
+	.clearfix();
+	padding: .5rem 2rem;
+	border-top: 1px solid #ccc;
+	cursor: pointer;
+
+	&.active {
+		background: @active;
+	}
+	&:last-child {
+		border-bottom: 1px solid #ccc;
+	}
+
+	img {
+
+		height: 4rem;
+		width: 4rem;
+		float: left;
+		margin-right: 1rem;
+		vertical-align: middle;
+	}
+
+	&:hover {
+		background: #87D4DE;
+		color: white;
+	}
 }

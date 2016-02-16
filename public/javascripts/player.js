@@ -1,6 +1,11 @@
 //    after the API code downloads.
 export let TeamPlayer = {
-  player: {}
+  player: {},
+  onTrackEnded: onTrackEnded
+}
+var onTrackEndedCallback;
+function onTrackEnded(callback) {
+  onTrackEndedCallback = callback;
 }
 // 3. This function creates an <iframe> (and YouTube player)
 
@@ -9,7 +14,7 @@ function onYouTubeIframeAPIReady() {
   TeamPlayer.player = new YT.Player('player', {
     height: '390',
     width: '640',
-    videoId: 'M7lc1UVf-VE',
+    autoPlay: true,
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -28,11 +33,17 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
+  var state = event.data;
+  if (state === YT.PlayerState.PLAYING && !done) {
     setTimeout(stopVideo, 6000);
     done = true;
   }
+
+  if (state === YT.PlayerState.ENDED) {
+    onTrackEndedCallback();
+  }
 }
+
 function stopVideo() {
   TeamPlayer.player.stopVideo();
 }
