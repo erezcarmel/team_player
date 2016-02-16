@@ -5,8 +5,7 @@
 let youtube = require('youtube-node');
 let yt      = new youtube();
 // let playlist = [];
-const videos = ('../modules/data-model-video')
-
+const videoList = require('../modules/data-model-video')
 yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
 
 function parseResultItem(item){
@@ -45,8 +44,8 @@ module.exports = {
                             });
                             if(items && items.length){
                                 // playlist.push(items[0]);
-																videos.add(items[0])
-                                return resolve({text:'Video added to playlist'});
+																videoList.add(items[0])
+                                return resolve({text: items[0].snippet.title + ' added to playlist'});
                             }
                             return resolve({text: 'No video found.'});
 
@@ -67,7 +66,7 @@ module.exports = {
                     break;
                 case 'list':
                 default: //list
-                    resolve({ text: '*The playlist*:', attachments:videos.getAll().map(parseResultItem)});
+                    resolve({ text: '*The playlist*:', attachments:videoList.getAll().map(parseResultItem)});
                     break;
             }
         });
