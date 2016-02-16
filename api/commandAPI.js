@@ -75,11 +75,11 @@ module.exports = {
                 case 'help':
                     resolve({
                         text : `*/player command options:*
-\n /player list : Show the current playlist. The list parameter is optional.
-\n /player add [video title]: Search and add the first video to the playlist.
-\n /player search [query]: Search and show the first 5 videos åto match.
-\n /player remove [id]: Remove a video from the playlist.
-\n /player ?|help: Show this helpful list.`
+_/player list:_ Show the current playlist. The list parameter is optional.
+_/player add [video title]:_ Search and add the first video to the playlist.
+_/player search [query]:_ Search and show the first 5 videos åto match.
+_/player remove [id]:_ Remove a video from the playlist.
+_/player ?|help:_ Show this helpful list.`
                     });
                     break;
                 case 'list':
