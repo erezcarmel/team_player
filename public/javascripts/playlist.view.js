@@ -11,10 +11,11 @@ let Playlist = React.createClass({
 
 	selectTrack(track) {
 		this.setState({
-			selected: track.id.videoId,
-			tracks: this.props.tracks
+			selected: track.id.videoId
 		});
-		this.props.onPlay(track);
+		setTimeout(() => {
+			this.playVideo(track.id.videoId);
+		}, 2000);
 	},
 
 	componentDidMount() {
@@ -50,6 +51,12 @@ let Playlist = React.createClass({
 		    this.setState({
 		    	tracks: tracks
 		   	})
+		   	let isPlaying = this.props.player.player.getCurrentTime();
+		   	let track = this.state.tracks[0];
+		   	let currentPlaying = this.props.player.player.getVideoData();
+			if (!currentPlaying || !currentPlaying.video_id && this.state.tracks.length){
+				this.selectedTrack(track.id.videoId);
+			}
 		  }
 		})
 	},
@@ -70,6 +77,12 @@ let Playlist = React.createClass({
 		});
 		// setTimeout(() => {
 		// 	this.playVideo(selected);
+		// }, 2000);
+		// setTimeout(() => {
+		// 	let isPlaying = this.props.player.player.getCurrentTime();
+		// 	if (isPlaying){
+		// 		this.playVideo()
+		// 	}
 		// }, 2000);
 
 		return (
