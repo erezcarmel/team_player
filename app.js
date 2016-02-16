@@ -35,12 +35,8 @@ app.get('/js/index.js', require('browserify-middleware')(path.join(__dirname, 'p
   transform: [ ['babelify', {presets: ['es2015', 'react']}]]
 }))
 
-// let login = require('./routes/login')
 app.use('/', routes);
-// app.use('/', login.app);
-// app.use('/users', users);
-// app.use('/api', login.ensureAuthenticated);
-// app.use('/api/posts', require('./routes/posts'));
+app.use('/command', require('./routes/command'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
