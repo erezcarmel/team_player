@@ -68,9 +68,9 @@ let Playlist = React.createClass({
 				</div>
 			);
 		});
-		setTimeout(() => {
-			this.playVideo(selected);
-		}, 2000);
+		// setTimeout(() => {
+		// 	this.playVideo(selected);
+		// }, 2000);
 
 		return (
 			<div>{ tracks }</div>
