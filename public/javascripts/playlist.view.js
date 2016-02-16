@@ -11,10 +11,9 @@ let Playlist = React.createClass({
 
 	selectTrack(track) {
 		this.setState({
-			selected: track.id.videoId,
-			tracks: this.props.tracks
+			selected: track.id.videoId
 		});
-		this.props.onPlay(track);
+		this.playVideo();
 	},
 
 	componentDidMount() {
