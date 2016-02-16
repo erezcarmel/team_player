@@ -15,7 +15,7 @@ function parseResultItem(item) {
         title_link  : 'http://www.youtube.com/watch?v=' + item.id.videoId,
         color       : '#663333',
         thumb_url   : item.snippet.thumbnails.default.url,
-        text        : '*id*: ' + item._id,
+        text        : '*id*: ' + (item._id || item.snippet.id.videoId),
         "mrkdwn_in" : ['text', 'pretext']
     }
 }
