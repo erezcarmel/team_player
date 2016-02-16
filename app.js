@@ -36,8 +36,18 @@ app.get('/js/index.js', require('browserify-middleware')(path.join(__dirname, 'p
 app.use('/', require('./routes/index'));
 app.use('/command', require('./routes/command'));
 
-var server = require('http').Server(app);
-require('./modules/socket.handler')(app)
+require('./modules/socket.handler')
+// var server = require('http').Server(app);
+// var io = require('socket.io')(server);
+//
+// server.listen(3001);
+//
+// io.on('connection', function (socket) {
+//   socket.emit('news', { hello: 'world' });
+//   socket.on('my other event', function (data) {
+//     console.log(data);
+//   });
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
