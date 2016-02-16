@@ -7,7 +7,7 @@ router.post('/', function(req, res, next) {
   //res.send(req.body.text);
   api.handleCommand(req.body.text).then( result => {
 
-      res.send(JSON.stringify(result));
+      res.send(result);
 
   },
   err => {
