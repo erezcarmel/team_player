@@ -8,9 +8,6 @@ var bodyParser = require('body-parser');
 const compression = require('compression')
 const helmet = require('helmet')
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
 app.use(compression())
 app.use(helmet());
@@ -35,7 +32,7 @@ app.get('/js/index.js', require('browserify-middleware')(path.join(__dirname, 'p
   transform: [ ['babelify', {presets: ['es2015', 'react']}]]
 }))
 
-app.use('/', routes);
+app.use('/', require('./routes/index'));
 app.use('/command', require('./routes/command'));
 
 // catch 404 and forward to error handler
