@@ -1,7 +1,8 @@
 // var react = require('react')
+var player = require('player');
 
 class A {
-    
+
 }
 
 let a = new A()

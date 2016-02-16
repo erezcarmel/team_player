@@ -1,8 +1,35 @@
+@bgcolor: rgba(255,255,255, .7);
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Raleway", Helvetica, Arial, sans-serif;
+  background: url(http://thenextweb.com/wp-content/blogs.dir/1/files/2015/03/1-ryU77MsLt5tnp3ow8kqELA.png) repeat;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+	background-color: @bgcolor;
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 3rem;
+
+	img {
+		height: 3rem;
+		vertical-align: middle;
+	}
+}
+.playlist {
+	float: left;
+	margin-right: 3rem;
+	background: @bgcolor;
+	width: 29.5rem;
+    min-height: 25rem;
+    border-radius: 0.5rem;
+}
+
+.player iframe {
+	border-radius: .5rem;
 }
