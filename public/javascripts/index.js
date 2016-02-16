@@ -8,3 +8,5 @@ let a = new A()
 
 console.log('working with react version:')
 console.log(react.version)
+
+require('./socket.io.client')
