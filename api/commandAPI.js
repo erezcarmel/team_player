@@ -7,17 +7,17 @@ let yt      = new youtube();
 // let playlist = [];
 const videoList = require('../modules/data-model-video')
 yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
+yt.addParam('type', 'video');
 
 function parseResultItem(item) {
-    let nItem =  {
-        title     : '*' + item.snippet.title + '*',
-        text      : 'http://www.youtube.com/watch?v=' + item.id.videoId,
-        mrkdwn_in : ['text', 'title', 'pretext']
+    return {
+        title       : item.snippet.title,
+        title_link  : 'http://www.youtube.com/watch?v=' + item.id.videoId,
+        color       : '#663333',
+        thumb_url   : item.snippet.thumbnails.default.url,
+        text        : '*id*: ' + (item._id || item.snippet.id.videoId),
+        "mrkdwn_in" : ['text', 'pretext']
     }
-    if(item._id){
-        nItem.pretext = 'id: ' + item._id;
-    }
-    return nItem;
 }
 
 function parseYoutubeResults(results) {
@@ -68,6 +68,17 @@ module.exports = {
                     break;
                 case 'remove':
                     return videoList.remove(arg).then(resolve, reject);
+                    break;
+                case '?':
+                case 'help':
+                    resolve({
+                        text : `*/player command options:*
+_/player list:_ Show the current playlist. The list parameter is optional.
+_/player add [video title]:_ Search and add the first video to the playlist.
+_/player search [query]:_ Search and show the first 5 videos åto match.
+_/player remove [id]:_ Remove a video from the playlist.
+_/player ?|help:_ Show this helpful list.`
+                    });
                     break;
                 case 'list':
                 default: //list
