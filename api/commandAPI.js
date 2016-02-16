@@ -7,6 +7,7 @@ let yt      = new youtube();
 // let playlist = [];
 const videoList = require('../modules/data-model-video')
 yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
+yt.addParam('type', 'video');
 
 function parseResultItem(item) {
     let nItem = {
