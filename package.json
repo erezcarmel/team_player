@@ -33,6 +33,8 @@
     "socket.io-client": "^1.4.5"
   },
   "devDependencies": {
-    "nodemon": "^1.8.1"
+    "nodemon": "^1.8.1",
+    "react-dom": "^0.14.7",
+    "request": "^2.69.0"
   }
 }

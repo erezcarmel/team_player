@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>SLACK Team Player</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>
+    	<img src="images/logo.jpg"> SLACK Team Player
+    </h1>
+    <div id="console"></div>
+    <div class="container">
+	    <div class="playlist">
+	    	<h2>Team Playlist</h2>
+	    	<div id="playlist" class="playlist-container">
+
+	    	</div>
+	    </div>
+
+	    <div class="player">
+			<div id="player"></div>
+	    </div>
+	</div>
+    <!-- <p>Welcome to <%= title %></p> -->
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <script src='/js/index.js'></script>
+    <!-- <script src='/javascripts/player.js'></script> -->
   </body>
 </html>
