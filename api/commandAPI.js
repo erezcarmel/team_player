@@ -11,7 +11,7 @@ yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
 function parseResultItem(item) {
     let nItem = {
         title       : item.snippet.title,
-        text        : 'http://www.youtube.com/watch?v=' + item.id.videoId,
+        title_link        : 'http://www.youtube.com/watch?v=' + item.id.videoId,
         color       : '#663333',
         thumb_url   : item.snippet.thumbnails.default.url,
         "mrkdwn_in" : ['text', 'pretext']
@@ -70,6 +70,17 @@ module.exports = {
                     break;
                 case 'remove':
                     return videoList.remove(arg).then(resolve, reject);
+                    break;
+                case '?':
+                case 'help':
+                    resolve({
+                        text: `*/player command options:*
+                        \\n /player list : Show the current playlist. The list parameter is optional.
+                        \\n /player add [video title]: Search and add the first video to the playlist.
+                        \\n /player search [query]: Search and show the first 5 videos to match.
+                        \\n /player remove [id]: Remove a video from the playlist.
+                        \\n /player ?|help: Show this helpful list.`
+                    });
                     break;
                 case 'list':
                 default: //list
