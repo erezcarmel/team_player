@@ -14,7 +14,7 @@ let Playlist = React.createClass({
 			selected: track.id.videoId
 		});
 		setTimeout(() => {
-			this.playVideo(selected);
+			this.playVideo(track.id.videoId);
 		}, 2000);
 	},
 
