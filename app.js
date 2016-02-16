@@ -35,6 +35,7 @@ app.get('/js/index.js', require('browserify-middleware')(path.join(__dirname, 'p
 
 app.use('/', require('./routes/index'));
 app.use('/command', require('./routes/command'));
+app.use('/videos', require('./routes/videos'));
 
 let socketIO = new require('./modules/socket.handler')(app)
 

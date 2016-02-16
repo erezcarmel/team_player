@@ -5,28 +5,36 @@ let db = new Datastore({ filename: 'temp/VideoList.db', autoload: true })
 
 class VideoList {
 	getAll() {
-		db.find({}, (err, docs) => {
-			if (err) throw Error(err)
-			return docs
+		return new Promise((resolve, reject) => {
+			db.find({}, (err, docs) => {
+				if (err) reject(err)
+				resolve(docs)
+			})
 		})
 	}
 	get(id) {
-		db.find({_id: id}, {}, (err, docs) => {
-			if (err) throw Error(err)
-			return docs;
-		});
+		return new Promise((resolve, reject) => {
+			db.find({_id: id}, {}, (err, docs) => {
+				if (err) reject(err)
+				resolve(docs)
+			});
+		})
 	}
 	add(video) {
-		db.insert(video, (err, doc) => {
-			if (err) throw Error(err)
-			return doc
+		return new Promise((resolve, reject) => {
+			db.insert(video, (err, doc) => {
+				if (err) reject(err)
+				resolve(doc)
+			})
 		})
 	}
 	remove(id) {
-		db.remove({_id: id}, {}, (err, doc) => {
-			if (err) throw Error(err)
-			return doc
-		});
+		return new Promise((resolve, reject) => {
+			db.remove({_id: id}, {}, (err, doc) => {
+				if (err) reject(err)
+				resolve(doc)
+			});
+		})
 	}
 }
 
