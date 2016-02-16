@@ -10,7 +10,7 @@ yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
 function parseYoutubeResults(results) {
     let items = results.items;
     return {
-
+        text: 'Search results:',
         attachments:items.map(item => {
             return {
                 title: '*' + item.snippet.title + '*',
