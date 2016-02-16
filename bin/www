@@ -21,6 +21,18 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+
+/**
+* Socket.IO listener 
+*/
+
+var socketHandler = require('../modules/socket.handler.js');
+var io = require('socket.io')(server);
+io.on('connection', function (socket) {
+  socketHandler.handler(socket);
+});
+
+
 /**
  * Listen on provided port, on all network interfaces.
  */

@@ -13,21 +13,6 @@ var users = require('./routes/users');
 
 var app = express();
 
-// var io = require('socket.io')(app);
-
-// var socketHandler = function(socket){
-//   socket.emit('news', { hello: 'world' });
-//   socket.on('my other event', function (data) {
-//     console.log(data);
-//   });
-// }
-
-
-// io.on('connection', function (socket) {
-//   socketHandler(socket);
-// });
-
-
 app.use(compression())
 app.use(helmet());
 

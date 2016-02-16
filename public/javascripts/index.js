@@ -1,3 +1,4 @@
+alert(1)
 var react = require('react')
 
 class A {
