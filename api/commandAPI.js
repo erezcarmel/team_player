@@ -4,20 +4,26 @@
 'use strict'
 let youtube = require('youtube-node');
 let yt      = new youtube();
-
+let playlist = [];
 yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
+
+function parseResultItem(item){
+    return {
+        title: '*' + item.snippet.title + '*',
+        text:'http://www.youtube.com/watch?v=' + item.id.videoId,
+        mrkdwn_in: ['text' , 'title']
+    }
+}
 
 function parseYoutubeResults(results) {
     let items = results.items;
     return {
-        text: 'Search results:',
-        attachments:items.map(item => {
-            return {
-                title: '*' + item.snippet.title + '*',
-                text:'http://www.youtube.com/watch?v=' + item.id.videoId,
-                mrkdwn_in: ['text' , 'title']
-            }
-        })
+        text: '*Search results*:',
+        attachments:items
+            .filter( item => {
+                return item.id.kind == 'youtube#video';
+            })
+            .map(parseResultItem)
     };
 }
 
@@ -29,7 +35,21 @@ module.exports = {
             let arg       = textSplit.slice(1).join(' ');
             switch (command) {
                 case 'add':
-                    reject('Not handled yet');
+
+                    yt.search(arg, 1/*results per page*/, (err, result) => {
+                        if (!err) {
+                            let items = result.items.filter(item => {
+                                return item.id.kind == 'youtube#video';
+                            });
+                            if(items && items.length){
+                                playlist.push(items[0]);
+                                return resolve({text:'Video added to playlist'});
+                            }
+                            return resolve({text: 'No video found.'});
+
+                        }
+                        return reject(err);
+                    });
                     break;
                 case 'search':
                     yt.search(arg, 5/*results per page*/, (err, result) => {
@@ -44,7 +64,7 @@ module.exports = {
                     break;
                 case 'list':
                 default: //list
-                    reject('Not handled yet');
+                    resolve({ text: '*The playlist*:', attachments:playlist.map(parseResultItem)});
                     break;
             }
         });
