@@ -1,12 +1,19 @@
 var React = require('react');
+var request = require('request');
 
 let Playlist = React.createClass({
 	getInitialState: function() {
-	    return { selected: this.props.selected };
+	    return {
+	    	selected: this.props.selected,
+	    	tracks: []
+	    };
 	},
 
 	selectTrack(track) {
-		this.setState({ selected: track.id.videoId });
+		this.setState({
+			selected: track.id.videoId,
+			tracks: this.props.tracks
+		});
 		this.props.onPlay(track);
 	},
 
@@ -22,7 +29,10 @@ let Playlist = React.createClass({
 				this.props.tracks[nextIndex].id.videoId;
 			this.setState({ selected: nextId });
 			this.playVideo(nextId)
-		})
+		});
+		const interval = 10 * 1000;
+		setInterval(this.poll, interval);
+		this.poll();
 	},
 
 	playVideo(videoId) {
@@ -33,9 +43,20 @@ let Playlist = React.createClass({
 		this.props.player.player.playVideo();
 	},
 
+	poll() {
+		request(location.origin + '/videos', (error, response, body) => {
+		  if (!error && response.statusCode == 200) {
+		    var tracks = JSON.parse(body);
+		    this.setState({
+		    	tracks: tracks
+		   	})
+		  }
+		})
+	},
+
 	render() {
 		let selected = this.state.selected;
-		var tracks = this.props.tracks.map((track, index) => {
+		var tracks = this.state.tracks.map((track, index) => {
 			const trackId = track.id.videoId;
 			const isActive = trackId === selected;
 			const style = 'track' + ( isActive ? ' active' : '');

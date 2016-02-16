@@ -7,12 +7,13 @@ var Playlist = require('./playlist.view');
 var Player = require('./player');
 require('./socket.io.client')
 
-var playlist = require('./youtube-medias.js');
+// var playlist = require('./youtube-medias.js');
+let playlist = [];
 var onPlay = (track) => {
 	// Player.TeamPlayer.player.loadVideoById(track.id.videoId);
  //    Player.TeamPlayer.player.playVideo();
 }
-let selectedTrackId = 'NtjrxhaDVo8';
+let selectedTrackId = '';
 
 ReactDOM.render(
 	<Playlist
