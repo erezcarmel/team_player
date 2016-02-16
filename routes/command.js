@@ -5,9 +5,10 @@ var api = require('../api/commandAPI')
 /* GET home page. */
 router.post('/', function(req, res, next) {
   //res.send(req.body.text);
+  res.setHeader('content-type', 'application/json')
   api.handleCommand(req.body.text).then( result => {
 
-      res.send(JSON.stringify(result));
+      res.send(result);
 
   },
   err => {
