@@ -43,7 +43,7 @@ module.exports = {
                             });
                             if(items && items.length){
                                 playlist.push(items[0]);
-                                return resolve({text:'Video added to playlist'});
+                                return resolve({text: items[0].snippet.title + ' added to playlist'});
                             }
                             return resolve({text: 'No video found.'});
 
