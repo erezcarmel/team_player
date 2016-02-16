@@ -4,7 +4,9 @@
 'use strict'
 let youtube = require('youtube-node');
 let yt      = new youtube();
-let playlist = [];
+// let playlist = [];
+const videos = ('../modules/data-model-video')
+
 yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
 
 function parseResultItem(item){
@@ -42,7 +44,8 @@ module.exports = {
                                 return item.id.kind == 'youtube#video';
                             });
                             if(items && items.length){
-                                playlist.push(items[0]);
+                                // playlist.push(items[0]);
+																videos.add(items[0])
                                 return resolve({text:'Video added to playlist'});
                             }
                             return resolve({text: 'No video found.'});
@@ -64,7 +67,7 @@ module.exports = {
                     break;
                 case 'list':
                 default: //list
-                    resolve({ text: '*The playlist*:', attachments:playlist.map(parseResultItem)});
+                    resolve({ text: '*The playlist*:', attachments:videos.getAll().map(parseResultItem)});
                     break;
             }
         });
