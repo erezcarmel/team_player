@@ -51,6 +51,11 @@ let Playlist = React.createClass({
 		    this.setState({
 		    	tracks: tracks
 		   	})
+		   	let isPlaying = this.props.player.player.getCurrentTime();
+		   	let track = this.state.tracks[0];
+			if (isPlaying > 0 && this.state.tracks.length){
+				this.playVideo(track.id.videoId);
+			}
 		  }
 		})
 	},
@@ -71,6 +76,12 @@ let Playlist = React.createClass({
 		});
 		// setTimeout(() => {
 		// 	this.playVideo(selected);
+		// }, 2000);
+		// setTimeout(() => {
+		// 	let isPlaying = this.props.player.player.getCurrentTime();
+		// 	if (isPlaying){
+		// 		this.playVideo()
+		// 	}
 		// }, 2000);
 
 		return (
