@@ -9,11 +9,15 @@ const videoList = require('../modules/data-model-video')
 yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
 
 function parseResultItem(item) {
-    return {
+    let nItem =  {
         title     : '*' + item.snippet.title + '*',
         text      : 'http://www.youtube.com/watch?v=' + item.id.videoId,
-        mrkdwn_in : ['text', 'title']
+        mrkdwn_in : ['text', 'title', 'pretext']
     }
+    if(item._id){
+        nItem.pretext = 'id: ' + item._id;
+    }
+    return nItem;
 }
 
 function parseYoutubeResults(results) {
