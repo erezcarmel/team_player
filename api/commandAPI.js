@@ -44,7 +44,7 @@ module.exports = {
                             });
                             if(items && items.length){
                                 // playlist.push(items[0]);
-																videoList.add(items[0]).then(result =>
+																return videoList.add(items[0]).then(result =>
                                 	resolve({text: items[0].snippet.title + ' added to playlist'})
 																)
                             }
