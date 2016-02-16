@@ -28,19 +28,19 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// babelify compile 
+// babelify compile
 app.get('/js/index.js', require('browserify-middleware')(path.join(__dirname, 'public/javascripts/index.js'), {
   cache: app.get('env') === 'development' ? 'dynamic' : true,
   precompile: app.get('env') === 'development' ? false : true,
   transform: [ ['babelify', {presets: ['es2015', 'react']}]]
 }))
 
-let login = require('./routes/login')
-// app.use('/', routes);
-app.use('/', login.app);
+// let login = require('./routes/login')
+app.use('/', routes);
+// app.use('/', login.app);
 // app.use('/users', users);
-app.use('/api', login.ensureAuthenticated);
-app.use('/api/posts', require('./routes/posts'));
+// app.use('/api', login.ensureAuthenticated);
+// app.use('/api/posts', require('./routes/posts'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
