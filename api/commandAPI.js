@@ -10,17 +10,14 @@ yt.setKey('AIzaSyC9dM7fWaqzc9wBU82XA5f61DAdTiQuric');
 yt.addParam('type', 'video');
 
 function parseResultItem(item) {
-    let nItem = {
+    return {
         title       : item.snippet.title,
         title_link  : 'http://www.youtube.com/watch?v=' + item.id.videoId,
         color       : '#663333',
         thumb_url   : item.snippet.thumbnails.default.url,
+        text        : '*id*: ' + item._id,
         "mrkdwn_in" : ['text', 'pretext']
     }
-    if (item._id) {
-        nItem.pretext = '*id*: ' + item._id;
-    }
-    return nItem;
 }
 
 function parseYoutubeResults(results) {
