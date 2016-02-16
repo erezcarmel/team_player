@@ -40,7 +40,7 @@ let Playlist = React.createClass({
 			const isActive = trackId === selected;
 			const style = 'track' + ( isActive ? ' active' : '');
 			return (
-				<div className={ style } onClick={ this.selectTrack.bind(this, track) }>
+				<div key={ track.etag } className={ style } onClick={ this.selectTrack.bind(this, track) }>
 					{ index + 1 }.
 					<img src={ track.snippet.thumbnails.default.url } />
 					{ track.snippet.title }

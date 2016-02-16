@@ -45,7 +45,7 @@ function onPlayerStateChange(event) {
 }
 
 function stopVideo() {
-  TeamPlayer.player.stopVideo();
+  // TeamPlayer.player.stopVideo();
 }
 
 function init() {
