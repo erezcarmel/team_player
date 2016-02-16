@@ -35,9 +35,9 @@ app.get('/js/index.js', require('browserify-middleware')(path.join(__dirname, 'p
 
 app.use('/', require('./routes/index'));
 app.use('/command', require('./routes/command'));
+app.use('/videos', require('./routes/videos'));
 
-var server = require('http').Server(app);
-require('./modules/socket.handler')(app)
+let socketIO = new require('./modules/socket.handler')(app)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
