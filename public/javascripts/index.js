@@ -1,7 +1,7 @@
-// var react = require('react')
+var react = require('react')
 
 class A {
-    
+
 }
 
 let a = new A()
